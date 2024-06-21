@@ -37,12 +37,19 @@ export default async function UserAvatar() {
             </Avatar>
           </DropdownMenuTrigger>
           <DropdownMenuContent className="mr-6 mt-6">
+          <Link href={"/"}>
+              <DropdownMenuItem>Home</DropdownMenuItem>
+            </Link>
             <Link href={"/profile"}>
-              <DropdownMenuItem> My Profile</DropdownMenuItem>
+              <DropdownMenuItem>My Profile</DropdownMenuItem>
             </Link>
-            <Link href={"/dashboard"}>
-              <DropdownMenuItem>Dashboard</DropdownMenuItem>
-            </Link>
+            {
+              session?.user?.role === "ADMIN" && (
+                <Link href={"/dashboard"}>
+                  <DropdownMenuItem>Dashboard</DropdownMenuItem>
+                </Link>
+              )
+            }
             <DropdownMenuSeparator />
 
             <DialogTrigger asChild>

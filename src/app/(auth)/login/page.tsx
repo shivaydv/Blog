@@ -7,7 +7,7 @@ import Link from "next/link";
 
 const page = async () => {
   const session = await auth();
-  if (session) redirect("/dashboard");
+  if (session) redirect("/profile");
 
   return (
     <div className="container flex h-full w-full flex-col items-center justify-center gap-4 font-mono">

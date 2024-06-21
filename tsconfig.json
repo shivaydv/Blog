@@ -21,6 +21,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/app/about/page.tsx", "src/constants/Social.js", "src/app/not-found.mdx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/app/(blog)/profile/page.tsx", "src/constants/Social.js", "src/app/not-found.mdx"],
   "exclude": ["node_modules"]
 }
