@@ -12,7 +12,7 @@ const page = async () => {
   return (
     <div className="container flex h-full w-full flex-col items-center justify-center gap-4 font-mono">
       <div>
-        <h2 className="text-center text-3xl font-bold text-foreground">
+        <h2 className="text-center text-2xl font-bold text-foreground">
           Welcome to Shiva&apos;s Blog
         </h2>
         <p className="font-base mt-2 text-center text-muted-foreground">

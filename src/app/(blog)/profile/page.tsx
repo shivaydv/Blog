@@ -1,7 +1,13 @@
+import { auth } from "@/auth";
 import { MDXRemote } from "next-mdx-remote/rsc";
+import { redirect } from "next/navigation";
 
 
-const page = () => {
+const page = async() => {
+  const session = await auth();
+
+  if (!session) redirect("/login");
+  
   const blog = `
   ## Profile
   
