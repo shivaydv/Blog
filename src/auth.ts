@@ -1,9 +1,11 @@
 import NextAuth from "next-auth";
 import Google from "next-auth/providers/google";
-import { Prisma } from "../prisma";
+import Github from "next-auth/providers/github";
+import Prisma from "../prisma";
+
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
-  providers: [Google],
+  providers: [Google,Github],
   pages: {
     signIn: "/login",
   },
@@ -17,14 +19,12 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
             email: profile.email,
           },
         });
-
-        if (user) {
-        } else {
-          const newUser = await Prisma.user.create({
+        if (!user) {
+          await Prisma.user.create({
             data: {
               name: profile.name,
               email: profile.email,
-              image: profile.picture,
+              image: profile.picture || profile.avatar_url ,
               role:
                 profile.email === process.env.ADMIN_EMAIL ? "ADMIN" : "USER",
             },

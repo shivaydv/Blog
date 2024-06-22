@@ -30,13 +30,16 @@ export default async function UserAvatar() {
       <Dialog>
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
+            <Button size={"icon"} variant={"ghost"} >
+
             <Avatar className="h-8 w-8">
               <img src={session?.user?.image || ""} alt="Profile Picture" />
               <AvatarFallback>{session?.user?.name?.charAt(0)}</AvatarFallback>
               <span className="sr-only">Toggle user menu</span>
             </Avatar>
+            </Button>
           </DropdownMenuTrigger>
-          <DropdownMenuContent className="mr-6 mt-6">
+          <DropdownMenuContent className="mr-6 mt-4">
           <Link href={"/"}>
               <DropdownMenuItem>Home</DropdownMenuItem>
             </Link>
@@ -45,8 +48,8 @@ export default async function UserAvatar() {
             </Link>
             {
               session?.user?.role === "ADMIN" && (
-                <Link href={"/dashboard"}>
-                  <DropdownMenuItem>Dashboard</DropdownMenuItem>
+                <Link href={"/admin"}>
+                  <DropdownMenuItem>Admin Panel</DropdownMenuItem>
                 </Link>
               )
             }

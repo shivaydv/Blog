@@ -8,6 +8,7 @@ import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import { Separator } from "@/components/ui/separator";
 import { ThemeProvider } from "@/Theme/Theme-provider";
+import { Toaster } from "@/components/ui/toaster";
 
 const Fragment = localFont({
   src: [
@@ -47,6 +48,7 @@ export default function RootLayout({
         <ThemeProvider attribute="class" defaultTheme="light">
           {children}
         </ThemeProvider>
+        <Toaster />
       </body>
     </html>
   );
