@@ -1,8 +1,6 @@
-import { ArrowRightIcon } from "lucide-react";
 import Link from "next/link";
 import Prisma from "../../../prisma";
-import { MDXRemote } from "next-mdx-remote/rsc";
-import { Button } from "@/components/ui/button";
+import { FormateDate } from "@/lib/FormateDate";
 
 export default async function Home() {
   const blogs = await Prisma.post.findMany({
@@ -11,32 +9,37 @@ export default async function Home() {
     },
     select: {
       title: true,
+      description: true,
       slug: true,
-      content: true,
       createdAt: true,
+    },
+    orderBy: {
+      createdAt: "desc",
     },
   });
 
+
   return (
     <div className="">
-      <div className="mx-auto grid max-w-3xl gap-4 md:gap-6 max-md:px-2 ">
-        {blogs.map((post) => {
+      <div className="mx-auto grid max-w-3xl gap-4 max-md:px-2 md:gap-6">
+        {blogs.length > 0 ? blogs.map((post) => {
           return (
-            <Link href={`/post/${post.slug}`} key={post.slug} className="">
+            <Link href={`/post/${post.slug}`} key={post.slug} className="grid gap-1">
            
-                <h2 className="mb-2 text-xl md:text-2xl font-bold ">
-                 {post.title}
-                </h2>
-                <div className="mb-2 flex items-center md:text-xs font-semibold text-sm text-muted-foreground">
-                  <span>{post.createdAt.toDateString()}</span>
+            
+                <span className="flex items-center text-sm text-muted-foreground md:text-xs">{FormateDate(post.createdAt.toString())}</span>
+                <div>
+
+              <h2 className=" text-xl font-bold md:text-2xl line-clamp-1">
+                {post.title}
+              </h2>
+              <p className="max-md: line-clamp-1  text-sm text-muted-foreground">
+                {post.description}
+              </p>
                 </div>
-                <p className="line-clamp-2 text-muted-foreground text-sm max-md:hidden ">
-                {post.content}
-                </p>
-              
             </Link>
           );
-        })}
+        }):<p className="w-full text-center">No Blog found</p>}
       </div>
     </div>
   );

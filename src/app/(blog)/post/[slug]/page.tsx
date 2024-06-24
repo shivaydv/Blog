@@ -1,31 +1,26 @@
-import { MDXRemote } from "next-mdx-remote/rsc"
-import Prisma from "../../../../../prisma"
-import Link from "next/link"
-import { ArrowLeft } from "lucide-react"
+import Prisma from "../../../../../prisma";
 
-const page = async({ params }: { params: { slug: string } }) => {
 
-    const post = await Prisma.post.findUnique({
-        where:{
-            slug:params.slug
-        }
-    })
+const page = async ({ params }: { params: { slug: string } }) => {
+  const post = await Prisma.post.findUnique({
+    where: {
+      slug: params.slug,
+    },
+  });
 
+  if (!post) return <div>Post not found</div>;
+
+  const content = { __html: post?.content || "" };
   return (
-    <div className="max-w-3xl mx-auto relative">
-        {/* <Link href="/" className="flex gap-1 justify-start   items-center font-semibold"><ArrowLeft size={16}/>Back</Link> */}
-        {
-            post?<>
-            <h1 className="text-2xl md:text-4xl w-full font-bold font-fragment pb-8">{post.title}</h1>
-            <MDXRemote source={post?.content} />
-            <div className="bg-red-300  h-screen"></div>
-            </>:null
-        }
-
+    <div className="relative mx-auto max-w-3xl">
+      <h1 className="w-full  font-fragment text-2xl font-extrabold md:text-3xl">
+        {post.title}
+      </h1>
+      <article className=" dark:prose-invert prose prose-headings:text-2xl  ">
+        <div dangerouslySetInnerHTML={content} />
+      </article>
     </div>
-  )
-}
+  );
+};
 
-
-
-export default page
+export default page;

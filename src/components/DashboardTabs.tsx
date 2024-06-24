@@ -3,13 +3,13 @@ import { TabsList, TabsTrigger } from './ui/tabs';
 import { buttonVariants } from './ui/button';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from './ui/accordion';
 
-const DashboardTabs = ({menuitems}:{menuitems:string[]}) => {
+const DashboardTabs = ({menuitems,heading}:{menuitems:string[],heading:string}) => {
   return (
     <TabsList className="sticky top-[4.05rem] z-40 col-span-8 flex h-fit w-full flex-col items-start rounded-none bg-background py-0 md:col-span-2 md:gap-3">
         
         {/* Desktop menu  */}
         <div className="flex flex-col items-start max-md:hidden">
-          <Menu list={menuitems} />
+          <Menu list={menuitems} heading={heading} />
         </div>
 
         {/* Mobile menu  */}
@@ -17,7 +17,7 @@ const DashboardTabs = ({menuitems}:{menuitems:string[]}) => {
           <AccordionItem value="menu">
             <AccordionTrigger>Menu</AccordionTrigger>
             <AccordionContent className="flex flex-col items-start">
-              <Menu list={menuitems} />
+              <Menu list={menuitems} heading={heading} />
             </AccordionContent>
           </AccordionItem>
         </Accordion>
@@ -27,13 +27,12 @@ const DashboardTabs = ({menuitems}:{menuitems:string[]}) => {
   )
 }
 
-const Menu = ({list}:{list:string[]}) => {
+const Menu = ({list,heading}:{list:string[],heading:string}) => {
 
     return (
       <>
-        <h1 className="py-2 text-xl font-semibold text-foreground md:pt-0 md:text-3xl">
-          {" "}
-          My Profile
+        <h1 className="py-2 text-xl font-semibold text-foreground md:pt-0 md:text-2xl">
+          {heading}
         </h1>
         {list.map((item) => (
           <TabsTrigger

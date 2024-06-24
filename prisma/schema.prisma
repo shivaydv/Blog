@@ -18,9 +18,6 @@ model User {
   name      String
   image     String?
   role      UserRole @default(USER)
-  // postId    String[] @db.ObjectId
-  // bookmarks Post[]   @relation(fields: [postId], references: [id])
-
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
@@ -28,12 +25,12 @@ model User {
 model Post {
   id           String   @id @default(auto()) @map("_id") @db.ObjectId
   title        String
+  description  String
   content      String
   slug         String   @unique
   published    Boolean  @default(false)
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
-  likes        Int      @default(0)
-  // userId       String[]   @db.ObjectId
-  // users        User[]   @relation(fields: [userId], references: [id])
+  // views        Int      @default(0)
+
 }
