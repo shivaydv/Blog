@@ -10,7 +10,7 @@ import Link from "next/link";
 
 import React,{ useState } from "react";
 
-const page = () => {
+const Page = () => {
   const [value, setValue] = useState("");
   
 
@@ -79,4 +79,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;
