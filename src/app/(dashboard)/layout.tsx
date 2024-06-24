@@ -9,10 +9,10 @@ export default async function DashboardLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  // const session = await auth();
+  const session = await auth();
 
-  // if (!session) redirect("/login");
-  // if (session?.user?.role !== "ADMIN") redirect("/profile");
+  if (!session) redirect("/login");
+  if (session?.user?.role !== "ADMIN") redirect("/profile");
 
   return (
     <div className="flex min-h-[100dvh] w-full flex-col">
