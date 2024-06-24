@@ -1,6 +1,6 @@
 
 import { BsGithub, BsGoogle } from "react-icons/bs";
-import {  Login, LoginbyGithub, LoginbyGoogle } from "@/actions/actions";
+import {  LoginbyGithub, LoginbyGoogle } from "@/actions/actions";
 import { Button } from "@/components/ui/button";
 import { auth } from "@/auth";
 import { redirect } from "next/navigation";
@@ -20,7 +20,7 @@ const page = async () => {
             Sign in to your account
           </h2>
         <p className="text-muted-foreground text-center">
-              Welcome to our Website! <br/>We're excited to have you on board.
+              Welcome to our Website! <br/>We&apos;re excited to have you on board.
             </p>
           
           <div className="flex justify-evenly items-center gap-2 max-md:flex-col">

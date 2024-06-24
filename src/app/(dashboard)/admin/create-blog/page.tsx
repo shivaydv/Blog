@@ -1,6 +1,5 @@
 "use client";
 import { CreatePost } from "@/actions/actions";
-import Test from "@/components/Test";
 import { MinimalTiptapEditor } from "@/components/minimal-tiptap";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -9,10 +8,10 @@ import { ArrowLeft } from "lucide-react";
 
 import Link from "next/link";
 
-import React, { useActionState, useRef } from "react";
+import React,{ useState } from "react";
 
 const page = () => {
-  const [value, setValue] = React.useState("");
+  const [value, setValue] = useState("");
   
 
 
