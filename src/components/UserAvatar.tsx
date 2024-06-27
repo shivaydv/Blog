@@ -20,7 +20,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { DialogClose } from "@radix-ui/react-dialog";
-import { Logout } from "@/actions/actions";
+import { Logout } from "@/actions/authActions";
 
 export default async function UserAvatar() {
   const session = await auth();
@@ -30,29 +30,28 @@ export default async function UserAvatar() {
       <Dialog>
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Button size={"icon"} variant={"ghost"} >
-
-            <Avatar className="h-8 w-8">
-              <img src={session?.user?.image || ""} alt="Profile Picture" />
-              <AvatarFallback>{session?.user?.name?.charAt(0)}</AvatarFallback>
-              <span className="sr-only">Toggle user menu</span>
-            </Avatar>
+            <Button size={"icon"} variant={"ghost"}>
+              <Avatar className="h-8 w-8">
+                <img src={session?.user?.image || ""} alt="Profile Picture" />
+                <AvatarFallback>
+                  {session?.user?.name?.charAt(0)}
+                </AvatarFallback>
+                <span className="sr-only">Toggle user menu</span>
+              </Avatar>
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent className="mr-6 mt-4">
-          <Link href={"/"}>
+            <Link href={"/"}>
               <DropdownMenuItem>Home</DropdownMenuItem>
             </Link>
             <Link href={"/profile"}>
               <DropdownMenuItem>My Profile</DropdownMenuItem>
             </Link>
-            {
-              session?.user?.role === "ADMIN" && (
-                <Link href={"/admin"}>
-                  <DropdownMenuItem>Admin Panel</DropdownMenuItem>
-                </Link>
-              )
-            }
+            {session?.user?.role === "ADMIN" && (
+              <Link href={"/admin"}>
+                <DropdownMenuItem>Admin Panel</DropdownMenuItem>
+              </Link>
+            )}
             <DropdownMenuSeparator />
 
             <DialogTrigger asChild>

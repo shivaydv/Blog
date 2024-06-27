@@ -16,17 +16,17 @@ const Navbar = ({ heading, url }: { heading: string; url?: string }) => {
         }
       >
         {url ? (
-          <Link href={url} className="text-nowrap text-lg font-semibold">
+          <Link href={url} className="text-nowrap text-lg font-semibold font-fragment ">
             {heading}
           </Link>
         ) : (
-          <h1 className="cursor-default text-nowrap text-lg font-semibold">
+          <h1 className="cursor-default text-nowrap text-lg font-semibold font-fragment">
             {heading}
           </h1>
         )}
 
         <div className="flex items-center gap-1">
-          <Search />
+          {heading !== "Dashboard" && <Search />}
           <Button size={"icon"} variant={"ghost"} asChild>
             <SocialList profile={["github"]} />
           </Button>

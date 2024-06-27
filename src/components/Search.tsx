@@ -13,7 +13,7 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { useFormState } from "react-dom";
-import { SearchPost } from "@/actions/actions";
+import { SearchPost } from "@/actions/postActions";
 import Link from "next/link";
 import { FormateDate } from "@/lib/FormateDate";
 
@@ -71,7 +71,7 @@ const Search = () => {
           </div>
         </div>
       </DialogTrigger>
-      <DialogContent className="w-[90%] rounded-md p-4 md:max-w-2xl ">
+      <DialogContent className="w-[90%] rounded-md p-4 md:max-w-2xl">
         <DialogHeader className="py-3">
           <DialogTitle>Search Blog by Title</DialogTitle>
         </DialogHeader>
@@ -86,11 +86,10 @@ const Search = () => {
             <Button type="submit">Search</Button>
           </form>
           <div className="grid gap-2">
-            {blogs.length > 0 ?
+            {blogs.length > 0 ? (
               blogs.map((item: any) => (
-                
                 <Link
-                onClick={() => setOpen(false)}
+                  onClick={() => setOpen(false)}
                   href={`/post/${item.slug}`}
                   key={item.slug}
                   className="rounded-md bg-muted p-2"
@@ -102,7 +101,10 @@ const Search = () => {
                     {item.title}
                   </h2>
                 </Link>
-              )): <p>No Blogs Found</p>}
+              ))
+            ) : (
+              <p>No Blogs Found</p>
+            )}
           </div>
         </div>
       </DialogContent>

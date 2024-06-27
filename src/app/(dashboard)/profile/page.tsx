@@ -11,16 +11,13 @@ const page = () => {
       <DashboardTabs menuitems={["Settings", "Bookmarks"]} heading="Profile" />
 
       <TabsContent value="Settings" className="col-span-8 md:col-span-6">
-        <Settings/>
+        <Settings />
       </TabsContent>
       <TabsContent value="Bookmarks" className="col-span-8 md:col-span-6">
         <div className=" ">Bookmarks</div>
       </TabsContent>
-      
     </Tabs>
   );
 };
-
-
 
 export default page;

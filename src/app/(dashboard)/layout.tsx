@@ -1,7 +1,5 @@
-
 import { auth } from "@/auth";
 import Navbar from "@/components/Navbar";
-
 import { redirect } from "next/navigation";
 
 export default async function DashboardLayout({
@@ -17,7 +15,6 @@ export default async function DashboardLayout({
   return (
     <div className="flex min-h-[100dvh] w-full flex-col">
       <Navbar heading="Dashboard" url="/profile" />
-
       <main className="container mx-auto flex-1 p-4 md:gap-8 md:p-10">
         {children}
       </main>

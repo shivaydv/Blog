@@ -24,17 +24,17 @@ export const Social = [
     url: "https://x.com/shivay1256",
   },
   {
-    name: "Linkedin",
+    name: "linkedin",
     url: "https://www.linkedin.com/in/shivaydv/",
     icon: <Linkedin />,
   },
   {
-    name: "Youtube",
+    name: "youtube",
     url: "https://www.youtube.com/@shivay1256",
     icon: <Youtube />,
   },
   {
-    name: "Instagram",
+    name: "instagram",
     url: "https://www.instagram.com/shivay1256/",
     icon: <Instagram />,
   },

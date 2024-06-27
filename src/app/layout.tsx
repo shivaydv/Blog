@@ -1,14 +1,11 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
-
 import { Instrument_Sans } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
-import Footer from "@/components/Footer";
-import Navbar from "@/components/Navbar";
-import { Separator } from "@/components/ui/separator";
 import { ThemeProvider } from "@/Theme/Theme-provider";
 import { Toaster } from "@/components/ui/toaster";
+import { SessionProvider } from "next-auth/react";
 
 const Fragment = localFont({
   src: [
@@ -45,9 +42,11 @@ export default function RootLayout({
           Instrument.variable,
         )}
       >
-        <ThemeProvider attribute="class" defaultTheme="light">
-          {children}
-        </ThemeProvider>
+        <SessionProvider>
+          <ThemeProvider attribute="class" defaultTheme="light">
+            {children}
+          </ThemeProvider>
+        </SessionProvider>
         <Toaster />
       </body>
     </html>
