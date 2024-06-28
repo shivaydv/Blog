@@ -44,7 +44,7 @@ const Blogs = async () => {
       </div>
 
       <Table>
-        <TableCaption>All Registered Users</TableCaption>
+        
         <TableHeader>
           <TableRow>
             <TableHead>Title</TableHead>
