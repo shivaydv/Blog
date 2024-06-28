@@ -59,14 +59,14 @@ export default async function UserAvatar() {
             </DialogTrigger>
           </DropdownMenuContent>
         </DropdownMenu>
-        <DialogContent className="sm:max-w-[425px]">
+        <DialogContent className="sm:max-w-md">
           <DialogHeader>
             <DialogTitle>Logout</DialogTitle>
             <DialogDescription>
               Are you sure you want to logout?
             </DialogDescription>
           </DialogHeader>
-          <DialogFooter>
+          <div className="w-full flex gap-2 justify-center items-center">
             <DialogClose>
               <Button>Cancel</Button>
             </DialogClose>
@@ -77,7 +77,7 @@ export default async function UserAvatar() {
                 </Button>
               </form>
             </DialogClose>
-          </DialogFooter>
+          </div>
         </DialogContent>
       </Dialog>
     );
