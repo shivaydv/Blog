@@ -8,16 +8,19 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   pages: {
     signIn: "/login",
   },
+  session: {
+    strategy: "jwt",
+  },
   callbacks: {
     async signIn({ profile }) {
       try {
         if (!profile || !profile.name || !profile.email) return false;
-
         const user = await Prisma.user.findUnique({
           where: {
             email: profile.email,
           },
         });
+
         if (!user) {
           await Prisma.user.create({
             data: {
@@ -36,22 +39,31 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         return false;
       }
     },
-    jwt: async ({ token, user }) => {
-      const dbUser = await Prisma.user.findFirst({
-        where: { email: user?.email as string },
-      });
-      if (!dbUser) {
-        token.id = user.id as string;
+    jwt: async ({ token, user, account, profile,trigger }) => {
+
+      
+
+
+       if (account && profile) {
+        console.log(user);
+
+        const dbUser = await Prisma.user.findUnique({
+          where: { email: profile.email as string },
+        });
+
+        if (!dbUser) {
+          return token;
+        }
+        return {
+          id: dbUser.id,
+          email: dbUser.email,
+          name: dbUser.name,
+          image: dbUser.image,
+          role: dbUser.role,
+        };
+      } else {
         return token;
       }
-
-      return {
-        id: dbUser.id,
-        email: dbUser.email,
-        name: dbUser.name,
-        image: dbUser.image,
-        role: dbUser.role,
-      };
     },
     session: async ({ session, token }) => {
       if (token) {

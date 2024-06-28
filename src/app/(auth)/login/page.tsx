@@ -8,7 +8,7 @@ import Image from "next/image";
 
 const page = async () => {
   const session = await auth();
-  if (session) redirect("/profile");
+  if (session) redirect("/");
 
   return (
     <div className="flex h-[100dvh] w-full flex-col md:flex-row">

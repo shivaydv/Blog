@@ -10,7 +10,7 @@ export default async function DashboardLayout({
   const session = await auth();
 
   if (!session) redirect("/login");
-  if (session?.user?.role !== "ADMIN") redirect("/profile");
+ 
 
   return (
     <div className="flex min-h-[100dvh] w-full flex-col">

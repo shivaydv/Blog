@@ -33,7 +33,7 @@ export async function DeleteUser(FormData: FormData) {
 export async function EditUserByAdmin(formData: FormData) {
   const email = formData.get("email") as string;
   const role = formData.get("role") as string;
-  console.log(email, role);
+  
 
   const admin = await Prisma.user.findMany({
     where: {
@@ -60,10 +60,13 @@ export async function EditUserByAdmin(formData: FormData) {
   revalidatePath("/admin", "page");
 }
 
-export const EditUserName = async (email: string, name: string) => {
+export const EditUserName = async (formData: FormData) => {
+  const email = formData.get("email") as string;
+  const name = formData.get("name") as string;
+
   const user = await Prisma.user.findUnique({
     where: {
-      email,
+      email: email as string,
     },
   });
 

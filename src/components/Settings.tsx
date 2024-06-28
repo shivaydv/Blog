@@ -1,76 +1,76 @@
-"use client";
 import React from "react";
 import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "./ui/card";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
 import { Label } from "./ui/label";
-import { useSession } from "next-auth/react";
+import { auth } from "@/auth";
+import Prisma from "../../prisma";
+
 import { EditUserName } from "@/actions/userActions";
 
-const Settings = () => {
-  const session = useSession();
+const Settings = async () => {
+  const session = await auth();
 
-  const [edit, setEdit] = React.useState(false);
+  const user = await Prisma.user.findUnique({
+    where: {
+      email: session?.user?.email as string,
+    },
+    select: {
+      name: true,
+      email: true,
+    },
+  });
 
-  const [newName, setNewName] = React.useState(session.data?.user?.name || "");
-
-  const handlesubmit = (e: React.FormEvent, newName: string, email: string) => {
-    e.preventDefault();
-    EditUserName(newName, email);
-    setEdit(!edit);
-  };
-
+  if (!user?.email || !user?.name) {
+    return null;
+  }
   return (
     <div className="grid gap-6">
+      <h1 className="text-2xl font-semibold capitalize">
+        {user?.name}'s Settings
+      </h1>
       <Card>
         <CardHeader>
           <CardTitle>Basic Info</CardTitle>
           <CardDescription>Update your profile information.</CardDescription>
         </CardHeader>
-        <CardContent className="space-y-4">
+        <CardContent >
+          <form className="space-y-4" action={EditUserName}>
+
+          
           <div className="space-y-2">
             <Label htmlFor="name">Name</Label>
-
-            <Input
-              defaultValue={session.data?.user?.name || ""}
-              onChange={(e) => setNewName(e.target.value)}
-              id="name"
-              placeholder={"Enter your name"}
-              readOnly={edit ? false : true}
-            />
+            <div  className="flex items-center justify-center gap-2">
+              <Input
+                defaultValue={user?.name || ""}
+                id="name"
+                name="name"
+                placeholder={"Enter your name"}
+                // readOnly={true}
+              /> 
+              <Button variant={"outline"}  type="submit" size={"lg"}>Update</Button>
+            </div>
           </div>
           <div className="space-y-2">
             <Label htmlFor="email">Email</Label>
             <Input
-              defaultValue={session.data?.user?.email || ""}
+              defaultValue={user?.email || ""}
               id="email"
+              name="email"
               placeholder={"Enter your email"}
               type="email"
-              readOnly={edit ? false : true}
+              readOnly={true}
+              
             />
           </div>
-          <div className="space-y-2"></div>
+          </form>
         </CardContent>
-        <CardFooter className="border-t p-6">
-          {edit ? (
-            <Button
-              onClick={(e) =>
-                handlesubmit(e, session.data?.user?.email || "", newName)
-              }
-            >
-              Save
-            </Button>
-          ) : (
-            <Button onClick={() => setEdit(!edit)}>Edit</Button>
-          )}
-        </CardFooter>
       </Card>
     </div>
   );

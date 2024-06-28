@@ -7,7 +7,6 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "./ui/accordion";
-import Link from "next/link";
 
 const DashboardTabs = ({
   menuitems,
@@ -17,7 +16,7 @@ const DashboardTabs = ({
   heading: string;
 }) => {
   return (
-    <TabsList className="sticky top-[4.05rem] z-40 col-span-8 flex h-fit w-full flex-col items-start rounded-none bg-background py-0 md:col-span-2 md:gap-3">
+    <TabsList className="sticky top-[4.05rem] z-40 col-span-10 flex h-fit w-full flex-col items-start rounded-none bg-background py-0 md:col-span-2 md:gap-3">
       {/* Desktop menu  */}
       <div className="flex flex-col items-start max-md:hidden">
         <Menu list={menuitems} heading={heading} />

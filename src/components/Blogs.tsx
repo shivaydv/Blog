@@ -35,10 +35,11 @@ const Blogs = async () => {
   });
 
   return (
-    <div className="space-y-4">
-      <div className="flex w-full justify-end">
-        <Button asChild>
-          <Link href={"/admin/create-blog"}>Add a New Post</Link>
+    <div className="grid gap-4">
+      <div className="flex w-full justify-between items-center">
+        <h1 className="text-2xl font-semibold capitalize"> All Blogs</h1>
+        <Button size={"sm"} asChild>
+          <Link href={"/admin/create-blog"}>New Post</Link>
         </Button>
       </div>
 
@@ -55,10 +56,10 @@ const Blogs = async () => {
         <TableBody>
           {blogs.map((post) => (
             <TableRow key={post.slug}>
-              <TableCell className="line-clamp-2 w-full">
-                {post.title}
+              <TableCell className="line-clamp-2 text-nowrap w-full">
+                {post.title.slice(0, 100)}
               </TableCell>
-              <TableCell className="">
+              <TableCell className="text-nowrap">
                 {FormateDate(post.createdAt.toString())}
               </TableCell>
               <TableCell>
