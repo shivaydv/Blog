@@ -33,7 +33,7 @@ const Settings = async () => {
   return (
     <div className="grid gap-6">
       <h1 className="text-2xl font-semibold capitalize">
-        {user?.name}'s Settings
+        {user?.name}&apos;s Settings
       </h1>
       <Card>
         <CardHeader>
