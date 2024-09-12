@@ -65,7 +65,7 @@ const Users = async () => {
               </TableCell>
               <TableCell>{user.email}</TableCell>
               <TableCell>{user.role}</TableCell>
-              <TableCell className="">
+              <TableCell className="text-nowrap">
                 {FormateDate(user.createdAt.toString())}
               </TableCell>
 

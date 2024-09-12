@@ -17,14 +17,14 @@ const page = async ({ params }: { params: { slug: string } }) => {
         {post.title}
       </h1>
       <div className="flex items-center justify-end gap-2 py-2">
+        <MessageCircleIcon size={24} />
         <div>
           {/* TODO: Add bookmark functionality */}
           <Bookmark size={24} />
           {/* <BookmarkCheck size={24} /> */}
         </div>
-        <MessageCircleIcon size={24} />
       </div>
-      <article className="prose prose-lg dark:prose-invert prose-headings:text-2xl prose-img:mx-auto prose-img:max-w-[720px] prose-img:rounded-lg">
+      <article className="prose prose-lg dark:prose-invert prose-headings:text-2xl prose-img:mx-auto  prose-img:rounded-lg">
         <div dangerouslySetInnerHTML={content} />
       </article>
     </div>
