@@ -5,23 +5,19 @@ import { Tabs, TabsContent } from "@/components/ui/tabs";
 
 const page = () => {
   return (
-    <Tabs
-      defaultValue="Blogs"
-      className="relative mx-auto grid h-full w-full max-w-6xl grid-cols-10 items-start gap-2"
-    >
+    <Tabs defaultValue="Blogs" className="h-full w-full max-w-6xl gap-2">
       <DashboardTabs
         menuitems={["Blogs", "Users", "Anayltics"]}
-        heading="Admin"
+        heading="Admin Panel"
       />
-      
-      <TabsContent value="Users" className="col-span-10 md:col-span-8">
+      <TabsContent value="Users">
         <Users />
       </TabsContent>
-      <TabsContent value="Blogs" className="col-span-10 md:col-span-8">
+      <TabsContent value="Blogs">
         <Blogs />
       </TabsContent>
-      <TabsContent value="Anayltics" className="col-span-10 md:col-span-8">
-        <div className=" ">Anayltics</div>
+      <TabsContent value="Anayltics">
+        <div className="flex justify-center py-20">Comming Soon</div>
       </TabsContent>
     </Tabs>
   );

@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 
-import { Command, Search as SearchIcon } from "lucide-react";
+import { Command as Cmdkicon, Search as SearchIcon } from "lucide-react";
 import {
   Dialog,
   DialogContent,
@@ -44,7 +44,7 @@ const Search = () => {
         <div>
           <div className={"hidden md:block"}>
             <Button
-              className={"mr-2 w-48 justify-between"}
+              className={"mr-2 w-48 justify-between rounded-lg"}
               size={"sm"}
               variant={"outline"}
               onClick={() => {
@@ -53,7 +53,7 @@ const Search = () => {
             >
               Search Blog...
               <div className={"flex items-center justify-center p-1"}>
-                <Command size={16} />
+                <Cmdkicon size={16} />
                 <span className={"text-base"}>K</span>
               </div>
             </Button>
@@ -103,7 +103,7 @@ const Search = () => {
                 </Link>
               ))
             ) : (
-              <p>No Blogs Found</p>
+              <p className="w-full text-center">No Blog Found</p>
             )}
           </div>
         </div>

@@ -4,17 +4,13 @@ import { Tabs, TabsContent } from "@/components/ui/tabs";
 
 const page = () => {
   return (
-    <Tabs
-      defaultValue="Settings"
-      className="relative mx-auto grid h-full w-full max-w-6xl grid-cols-8 items-start gap-2"
-    >
+    <Tabs defaultValue="Settings" className="h-full w-full max-w-6xl gap-2">
       <DashboardTabs menuitems={["Settings", "Bookmarks"]} heading="Profile" />
-
-      <TabsContent value="Settings" className="col-span-8 md:col-span-6">
+      <TabsContent value="Settings">
         <Settings />
       </TabsContent>
-      <TabsContent value="Bookmarks" className="col-span-8 md:col-span-6">
-        <div className=" ">Bookmarks</div>
+      <TabsContent value="Bookmarks">
+        <div className="flex justify-center py-20">Comming Soon</div>
       </TabsContent>
     </Tabs>
   );

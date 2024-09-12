@@ -30,45 +30,41 @@ const Settings = async () => {
   if (!user?.email || !user?.name) {
     return null;
   }
+
   return (
-    <div className="grid gap-6">
-      <h1 className="text-2xl font-semibold capitalize">
-        {user?.name}&apos;s Settings
-      </h1>
+    <div className="grid gap-6 py-2">
       <Card>
         <CardHeader>
           <CardTitle>Basic Info</CardTitle>
           <CardDescription>Update your profile information.</CardDescription>
         </CardHeader>
-        <CardContent >
+        <CardContent>
           <form className="space-y-4" action={EditUserName}>
-
-          
-          <div className="space-y-2">
-            <Label htmlFor="name">Name</Label>
-            <div  className="flex items-center justify-center gap-2">
-              <Input
-                defaultValue={user?.name || ""}
-                id="name"
-                name="name"
-                placeholder={"Enter your name"}
-                // readOnly={true}
-              /> 
-              <Button variant={"outline"}  type="submit" size={"lg"}>Update</Button>
+            <div className="space-y-2">
+              <Label htmlFor="name">Name</Label>
+              <div className="flex items-center justify-center gap-2">
+                <Input
+                  defaultValue={user?.name || ""}
+                  id="name"
+                  name="name"
+                  placeholder={"Enter your name"}
+                />
+                <Button variant={"outline"} type="submit" size={"lg"}>
+                  Update
+                </Button>
+              </div>
             </div>
-          </div>
-          <div className="space-y-2">
-            <Label htmlFor="email">Email</Label>
-            <Input
-              defaultValue={user?.email || ""}
-              id="email"
-              name="email"
-              placeholder={"Enter your email"}
-              type="email"
-              readOnly={true}
-              
-            />
-          </div>
+            <div className="space-y-2">
+              <Label htmlFor="email">Email</Label>
+              <Input
+                defaultValue={user?.email || ""}
+                id="email"
+                name="email"
+                placeholder={"Enter your email"}
+                type="email"
+                readOnly={true}
+              />
+            </div>
           </form>
         </CardContent>
       </Card>

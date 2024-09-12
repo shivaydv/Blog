@@ -10,12 +10,11 @@ export default async function DashboardLayout({
   const session = await auth();
 
   if (!session) redirect("/login");
- 
 
   return (
     <div className="flex min-h-[100dvh] w-full flex-col">
-      <Navbar heading="Dashboard" url="/profile" />
-      <main className="container mx-auto flex-1 p-4 md:gap-8 md:p-10">
+      <Navbar heading="Dashboard" />
+      <main className="container mx-auto flex-1 p-4 md:gap-8 md:p-4">
         {children}
       </main>
     </div>

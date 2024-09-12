@@ -14,7 +14,6 @@ import {
   Dialog,
   DialogContent,
   DialogDescription,
-  DialogFooter,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
@@ -66,7 +65,7 @@ export default async function UserAvatar() {
               Are you sure you want to logout?
             </DialogDescription>
           </DialogHeader>
-          <div className="w-full flex gap-2 justify-center items-center">
+          <div className="flex w-full items-center justify-center gap-2">
             <DialogClose>
               <Button>Cancel</Button>
             </DialogClose>

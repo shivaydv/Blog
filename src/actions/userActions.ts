@@ -33,7 +33,6 @@ export async function DeleteUser(FormData: FormData) {
 export async function EditUserByAdmin(formData: FormData) {
   const email = formData.get("email") as string;
   const role = formData.get("role") as string;
-  
 
   const admin = await Prisma.user.findMany({
     where: {
@@ -79,11 +78,14 @@ export const EditUserName = async (formData: FormData) => {
         name,
       },
     });
+
+    revalidatePath("/profile", "page");
+    return {
+      message: "User updated",
+    };
   } else {
     return {
       message: "User not found",
     };
   }
-
-  revalidatePath("/profile", "page");
 };

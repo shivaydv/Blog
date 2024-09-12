@@ -69,7 +69,7 @@ const Users = async () => {
                 {FormateDate(user.createdAt.toString())}
               </TableCell>
 
-              <TableCell>
+              <TableCell className="text-center">
                 {/* Edit Button */}
                 <Dialog>
                   <DialogTrigger asChild>
@@ -115,7 +115,7 @@ const Users = async () => {
                 </Dialog>
               </TableCell>
               {/* Delete Button */}
-              <TableCell>
+              <TableCell className="text-center">
                 <Dialog>
                   <DialogTrigger asChild>
                     <Button variant={"ghost"} size={"sm"}>

@@ -9,9 +9,9 @@ export default function BlogLayout({
 }>) {
   return (
     <>
-      <Navbar heading="Blog by Shiva" url="/" />
-      <main className="container my-8 flex-1 md:my-10">{children}</main>
-      <Separator />
+      <Navbar heading="Shiva Yadav" url="/" />
+      <main className="container flex-1">{children}</main>
+      {/* <Separator /> */}
       <Footer />
     </>
   );

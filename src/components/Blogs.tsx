@@ -3,7 +3,6 @@ import Prisma from "../../prisma";
 import {
   Table,
   TableBody,
-  TableCaption,
   TableCell,
   TableHead,
   TableHeader,
@@ -35,16 +34,15 @@ const Blogs = async () => {
   });
 
   return (
-    <div className="grid gap-4">
-      <div className="flex w-full justify-between items-center">
-        <h1 className="text-2xl font-semibold capitalize"> All Blogs</h1>
+    <div className="grid gap-4 py-2">
+      <div className="flex w-full items-center justify-between">
+        <h1 className="text-xl font-semibold"> All Posts</h1>
         <Button size={"sm"} asChild>
-          <Link href={"/admin/create-blog"}>New Post</Link>
+          <Link href={"/admin/create-blog"}>Create New Post</Link>
         </Button>
       </div>
 
       <Table>
-        
         <TableHeader>
           <TableRow>
             <TableHead>Title</TableHead>
@@ -56,18 +54,18 @@ const Blogs = async () => {
         <TableBody>
           {blogs.map((post) => (
             <TableRow key={post.slug}>
-              <TableCell className="line-clamp-2 text-nowrap w-full">
+              <TableCell className="line-clamp-2 w-full text-nowrap font-semibold">
                 {post.title.slice(0, 100)}
               </TableCell>
               <TableCell className="text-nowrap">
                 {FormateDate(post.createdAt.toString())}
               </TableCell>
-              <TableCell>
+              <TableCell className="text-center">
                 <Button variant={"ghost"} asChild size={"sm"}>
                   <Link href={`/admin/edit/${post.slug}`}>Edit</Link>
                 </Button>
               </TableCell>
-              <TableCell>
+              <TableCell className="text-center">
                 <Dialog>
                   <DialogTrigger asChild>
                     <Button variant={"ghost"} size={"sm"}>
