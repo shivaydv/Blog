@@ -18,6 +18,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { CATEGORIES } from "@/config/categories";
+import Image from "next/image";
 
 const EditBlog = ({
   title,
@@ -191,10 +192,12 @@ const EditBlog = ({
           />
           {localImagePreview && (
             <div className="relative aspect-video w-full overflow-hidden rounded-lg">
-              <img
+              <Image
                 src={localImagePreview}
                 alt="Banner preview"
-                className="h-full w-full object-cover"
+                fill
+                className="object-cover"
+                sizes="(max-width: 1200px) 100vw, 1200px"
               />
             </div>
           )}

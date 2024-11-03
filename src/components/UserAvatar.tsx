@@ -1,5 +1,5 @@
 import { auth } from "@/auth";
-import { Avatar, AvatarFallback } from "./ui/avatar";
+import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -20,6 +20,7 @@ import {
 } from "@/components/ui/dialog";
 import { DialogClose } from "@radix-ui/react-dialog";
 import { Logout } from "@/actions/authActions";
+import Image from "next/image";
 
 export default async function UserAvatar() {
   const session = await auth();
@@ -31,7 +32,14 @@ export default async function UserAvatar() {
           <DropdownMenuTrigger asChild>
             <Button size={"icon"} variant={"ghost"}>
               <Avatar className="h-8 w-8">
-                <img src={session?.user?.image!} alt="Profile Picture" />
+                <AvatarImage asChild>
+                  <Image
+                    src={session?.user?.image!}
+                    alt="Profile Picture"
+                    width={40}
+                    height={40}
+                  />
+                </AvatarImage>
                 <AvatarFallback>
                   {session?.user?.name?.charAt(0)}
                 </AvatarFallback>

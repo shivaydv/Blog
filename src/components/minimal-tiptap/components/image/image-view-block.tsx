@@ -2,6 +2,7 @@ import { isNumber, NodeViewProps, NodeViewWrapper } from '@tiptap/react'
 import { useMemo } from 'react'
 import { useImageLoad } from '../../hooks/use-image-load'
 import { cn } from '@/lib/utils'
+import Image from "next/image";
 
 const ImageViewBlock = ({ editor, node, getPos }: NodeViewProps) => {
   const imgSize = useImageLoad(node.attrs.src)
@@ -27,10 +28,13 @@ const ImageViewBlock = ({ editor, node, getPos }: NodeViewProps) => {
                 }}
               >
                 <div className="relative flex h-full max-h-full w-full max-w-full overflow-hidden">
-                  <img
-                    alt={node.attrs.alt}
+                  <Image
                     src={node.attrs.src}
-                    className="absolute left-2/4 top-2/4 m-0 h-full max-w-full -translate-x-2/4 -translate-y-2/4 transform object-contain"
+                    alt={node.attrs.alt}
+                    title={node.attrs.title}
+                    fill
+                    className="object-contain"
+                    sizes="(max-width: 1200px) 100vw, 1200px"
                   />
                 </div>
               </div>

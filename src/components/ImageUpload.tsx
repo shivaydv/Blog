@@ -15,7 +15,7 @@ export type ImageUploadRef = {
   uploadToCloud: () => Promise<string | undefined>;
 };
 
-const ImageUpload = forwardRef<ImageUploadRef, ImageUploadProps>((props, ref) => {
+const ImageUpload = forwardRef<ImageUploadRef, ImageUploadProps>(function ImageUpload(props, ref) {
   const [preview, setPreview] = useState<string | null>(props.value || null);
   const [file, setFile] = useState<File | null>(null);
   const [isUploading, setIsUploading] = useState(false);

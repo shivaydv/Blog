@@ -3,6 +3,7 @@ import { auth } from "@/auth";
 import { Comments } from "@/components/Comments";
 import { LikeButton } from "@/components/LikeButton";
 import { FormateDate } from "@/lib/FormateDate";
+import Image from "next/image";
 
 const page = async ({ params }: { params: { slug: string } }) => {
   const session = await auth();
@@ -53,11 +54,14 @@ const page = async ({ params }: { params: { slug: string } }) => {
           {post.title}
         </h1>
         {post.bannerImage && (
-          <div className="mt-6 aspect-video w-full overflow-hidden rounded-lg">
-            <img
+          <div className="mt-6 aspect-video w-full relative overflow-hidden rounded-lg">
+            <Image
               src={post.bannerImage}
               alt={post.title}
-              className="h-full w-full object-cover"
+              fill
+              className="object-cover"
+              priority
+              sizes="(max-width: 1200px) 100vw, 1200px"
             />
           </div>
         )}
