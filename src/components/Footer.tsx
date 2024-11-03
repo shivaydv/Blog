@@ -14,17 +14,17 @@ const Footer = () => {
       >
         <span>
           {`© ${new Date().getFullYear()} `}-
-          <Link
+          <span
             className={
               "pl-1 font-semibold hover:underline hover:underline-offset-4"
             }
-            href={"https://x.com/shivay1256"}
+
           >
-            Shiva Yadav
-          </Link>
+            R Anthony Raj
+          </span>
         </span>
 
-        <SocialList profile={["mail", "twitter", "github"]} />
+        <SocialList profile={["mail", "github"]} />
       </footer>
     </div>
   );
