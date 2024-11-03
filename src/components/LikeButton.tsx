@@ -23,7 +23,13 @@ export function LikeButton({ postId, isLiked, likesCount, isLoggedIn }: LikeButt
       setShowLoginDialog(true);
       return;
     }
-    startTransition(() => toggleLike(postId));
+    startTransition(async () => {
+      try {
+        await toggleLike(postId);
+      } catch (error) {
+        console.error('Error toggling like:', error);
+      }
+    });
   };
 
   return (

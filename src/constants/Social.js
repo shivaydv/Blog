@@ -1,10 +1,7 @@
 import {
   Github,
-  Instagram,
-  Linkedin,
   Mail,
-  Twitter,
-  Youtube,
+
 } from "lucide-react";
 
 export const Social = [

@@ -51,7 +51,7 @@ export async function addComment(formData: FormData) {
   revalidatePath("/post/[slug]", "page");
 }
 
-export async function toggleLike(postId: string) {
+export async function toggleLike(postId: string): Promise<void> {
   const session = await auth();
   if (!session?.user) {
     redirect("/login");
@@ -62,9 +62,7 @@ export async function toggleLike(postId: string) {
   });
 
   if (!user) {
-    return {
-      error: "User not found",
-    };
+    throw new Error("User not found");
   }
 
   const existingLike = await Prisma.like.findFirst({
