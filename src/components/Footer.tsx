@@ -24,7 +24,7 @@ const Footer = () => {
           </span>
         </span>
 
-        <SocialList profile={["mail", "github"]} />
+        <SocialList profile={["mail", "twitter", "github"]} />
       </footer>
     </div>
   );
