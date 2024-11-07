@@ -1,11 +1,13 @@
 import React from "react";
 import Link from "next/link";
-import SocialList from "./SocialList";
+
 import { Separator } from "./ui/separator";
+import { Social } from "@/constants/Social";
+import SocialList from "./SocialList";
 
 const Footer = () => {
   return (
-    <div className="container">
+    <div className="mx-auto w-full max-w-7xl">
       <Separator />
       <footer
         className={
@@ -18,9 +20,8 @@ const Footer = () => {
             className={
               "pl-1 font-semibold hover:underline hover:underline-offset-4"
             }
-
           >
-            R Anthony Raj
+            <Link href={"https://shivayadav.tech"}>Shiva Yadav</Link>
           </span>
         </span>
 

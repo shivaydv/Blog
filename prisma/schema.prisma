@@ -25,18 +25,17 @@ model User {
 }
 
 model Post {
-  id           String   @id @default(auto()) @map("_id") @db.ObjectId
-  title        String
-  description  String
-  content      String
-  slug         String   @unique
-  published    Boolean  @default(false)
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
-  bannerImage  String?
-  category     String?
-  comments     Comment[]
-  likes        Like[]
+  id          String    @id @default(auto()) @map("_id") @db.ObjectId
+  title       String
+  description String
+  content     String
+  bannerImage String 
+  slug        String    @unique
+  published   Boolean   @default(false)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  likes       Like[]
+  comments    Comment[]
 }
 
 model Comment {

@@ -7,17 +7,9 @@ import { Label } from "@/components/ui/label";
 import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
 import React, { useState, useRef, useTransition } from "react";
-import { LoadingSpinner } from '@/components/ui/loading-spinner';
+import { LoadingSpinner } from "@/components/ui/loading-spinner";
 import { useToast } from "@/components/ui/use-toast";
 import { useRouter } from "next/navigation";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import { CATEGORIES } from "@/config/categories";
 import Image from "next/image";
 
 const EditBlog = ({
@@ -25,61 +17,59 @@ const EditBlog = ({
   description,
   content,
   slug,
-  category,
   bannerImage,
 }: {
   title?: string;
   description?: string;
   content?: string;
   slug?: string;
-  category?: string;
   bannerImage?: string;
 }) => {
   const [value, setValue] = useState(content || "");
-  const [selectedCategory, setSelectedCategory] = useState(category || "");
   const [isPending, startTransition] = useTransition();
   const { toast } = useToast();
   const router = useRouter();
-  const [localImagePreview, setLocalImagePreview] = useState<string | null>(bannerImage || null);
+  const [localImagePreview, setLocalImagePreview] = useState<string | null>(
+    bannerImage || null,
+  );
   const [imageFile, setImageFile] = useState<File | null>(null);
 
   const handleSubmit = async (formData: FormData) => {
     startTransition(async () => {
       try {
-        // Add the category to formData
-        formData.set('category', selectedCategory);
-        
         // Handle banner image
         if (imageFile) {
           const formDataForImage = new FormData();
-          formDataForImage.append('file', imageFile);
-          
-          const response = await fetch('/api/upload', {
-            method: 'POST',
+          formDataForImage.append("file", imageFile);
+
+          const response = await fetch("/api/upload", {
+            method: "POST",
             body: formDataForImage,
           });
 
           if (!response.ok) {
-            throw new Error('Failed to upload image');
+            throw new Error("Failed to upload image");
           }
 
           const data = await response.json();
-          formData.set('bannerImage', data.secure_url);
+          formData.set("bannerImage", data.secure_url);
         } else if (bannerImage) {
-          formData.set('bannerImage', bannerImage);
+          formData.set("bannerImage", bannerImage);
         }
 
         // Submit the form
-        const result = slug ? await EditPost(formData) : await CreatePost(formData);
+        const result = slug
+          ? await EditPost(formData)
+          : await CreatePost(formData);
 
         if (result?.errors) {
           console.log("Validation errors:", result.errors);
-          
+
           // Create a more detailed error message
           const errorMessages = Object.entries(result.errors)
-            .map(([field, errors]) => `${field}: ${errors.join(', ')}`)
-            .join('\n');
-          
+            .map(([field, errors]) => `${field}: ${errors.join(", ")}`)
+            .join("\n");
+
           toast({
             title: "Validation Error",
             description: errorMessages,
@@ -90,10 +80,12 @@ const EditBlog = ({
 
         toast({
           title: "Success",
-          description: slug ? "Post updated successfully" : "Post created successfully",
+          description: slug
+            ? "Post updated successfully"
+            : "Post created successfully",
         });
 
-        router.push('/admin');
+        router.push("/admin");
         router.refresh();
       } catch (error) {
         console.error("Error:", error);
@@ -163,25 +155,6 @@ const EditBlog = ({
           />
         </div>
         <div className="grid gap-2">
-          <Label htmlFor="category">Category</Label>
-          <Select 
-            name="category" 
-            value={selectedCategory}
-            onValueChange={setSelectedCategory}
-          >
-            <SelectTrigger>
-              <SelectValue placeholder="Select category" />
-            </SelectTrigger>
-            <SelectContent>
-              {CATEGORIES.map((cat) => (
-                <SelectItem key={cat} value={cat}>
-                  {cat}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-        </div>
-        <div className="grid gap-2">
           <Label htmlFor="bannerImage">Banner Image</Label>
           <Input
             type="file"
@@ -204,12 +177,7 @@ const EditBlog = ({
         </div>
         <div className="grid gap-2">
           <Label htmlFor="content">Content</Label>
-          <Input
-            id="content"
-            name="content"
-            type="hidden"
-            value={value}
-          />
+          <Input id="content" name="content" type="hidden" value={value} />
           <MinimalTiptapEditor
             value={value}
             onValueChange={setValue}

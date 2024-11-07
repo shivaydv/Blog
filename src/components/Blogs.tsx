@@ -59,7 +59,6 @@ const Blogs = ({ posts }: { posts: any[] }) => {
           <TableHeader>
             <TableRow>
               <TableHead>Title</TableHead>
-              <TableHead>Category</TableHead>
               <TableHead>Published Date</TableHead>
               <TableHead className="text-center">Edit</TableHead>
               <TableHead className="text-center">Delete</TableHead>
@@ -68,10 +67,9 @@ const Blogs = ({ posts }: { posts: any[] }) => {
           <TableBody>
             {posts.map((post) => (
               <TableRow key={post.slug}>
-                <TableCell className="line-clamp-2 w-full text-nowrap font-semibold ">
+                <TableCell className="line-clamp-2 w-full text-nowrap font-semibold">
                   {post.title.slice(0, 100)}
                 </TableCell>
-                <TableCell>{post.category}</TableCell>
                 <TableCell className="text-nowrap">
                   {FormateDate(post.createdAt.toString())}
                 </TableCell>

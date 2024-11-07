@@ -10,7 +10,7 @@ export default function BlogLayout({
   return (
     <>
       <Navbar heading="Shiva Yadav" url="/" />
-      <main className="container flex-1">{children}</main>
+      <main className="mx-auto max-w-7xl flex-1">{children}</main>
       <Footer />
     </>
   );

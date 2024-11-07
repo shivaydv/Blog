@@ -1,4 +1,4 @@
-import  Blogs  from "@/components/Blogs";
+import Blogs from "@/components/Blogs";
 import Prisma from "../../../../prisma";
 
 export default async function AdminPage() {
@@ -7,10 +7,9 @@ export default async function AdminPage() {
       title: true,
       slug: true,
       createdAt: true,
-      category: true,
     },
     orderBy: {
-      createdAt: 'desc',
+      createdAt: "desc",
     },
   });
 

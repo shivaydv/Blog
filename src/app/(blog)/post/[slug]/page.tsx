@@ -35,14 +35,9 @@ const page = async ({ params }: { params: { slug: string } }) => {
     <div className="relative mx-auto max-w-4xl py-6">
       <div className="mb-6">
         <div className="flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <span className="text-sm text-muted-foreground">
-              {FormateDate(post.createdAt.toString())}
-            </span>
-            <span className="text-sm font-medium bg-primary/10 text-primary px-2 py-1 rounded-full">
-              {post.category}
-            </span>
-          </div>
+          <span className="text-sm text-muted-foreground">
+            {FormateDate(post.createdAt.toString())}
+          </span>
           <LikeButton 
             postId={post.id} 
             isLiked={isLiked}

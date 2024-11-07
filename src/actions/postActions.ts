@@ -8,7 +8,6 @@ const Blogschema = z.object({
   title: z.string().min(1, { message: "Title is required" }),
   description: z.string().min(1, { message: "Description is required" }),
   content: z.string().min(1, { message: "Content is required" }),
-  category: z.string().min(1, { message: "Category is required" }),
   bannerImage: z.string().min(1, { message: "Banner image is required" }),
 });
 
@@ -18,7 +17,6 @@ export async function CreatePost(formData: FormData) {
       title: formData.get("title"),
       description: formData.get("description"),
       content: formData.get("content"),
-      category: formData.get("category"),
       bannerImage: formData.get("bannerImage"),
     });
 
@@ -28,7 +26,7 @@ export async function CreatePost(formData: FormData) {
       };
     }
 
-    const { title, description, content, category, bannerImage } = validation.data;
+    const { title, description, content, bannerImage } = validation.data;
     
     await Prisma.post.create({
       data: {
@@ -38,7 +36,6 @@ export async function CreatePost(formData: FormData) {
           /<(input|hr|br|img)([^>]*?)>(?!<\/\1>)/gi,
           "<$1$2/>"
         ),
-        category,
         bannerImage,
         slug: title
           .toLowerCase()
@@ -64,7 +61,6 @@ export async function EditPost(formData: FormData) {
       title: formData.get("title"),
       description: formData.get("description"),
       content: formData.get("content"),
-      category: formData.get("category"),
       bannerImage: formData.get("bannerImage"),
     });
 
@@ -74,7 +70,7 @@ export async function EditPost(formData: FormData) {
       };
     }
 
-    const { title, description, content, category, bannerImage } = validation.data;
+    const { title, description, content, bannerImage } = validation.data;
 
     await Prisma.post.update({
       where: { slug },
@@ -85,7 +81,6 @@ export async function EditPost(formData: FormData) {
           /<(input|hr|br|img)([^>]*?)>(?!<\/\1>)/gi,
           "<$1$2/>"
         ),
-        category,
         bannerImage,
         slug: title
           .toLowerCase()
