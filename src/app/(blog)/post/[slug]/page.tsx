@@ -32,7 +32,7 @@ const page = async ({ params }: { params: { slug: string } }) => {
 
   const content = { __html: post?.content || "" };
   return (
-    <div className="relative mx-auto max-w-4xl py-6">
+    <div className="relative max-w-5xl mx-auto py-6">
       <div className="mb-6">
         <div className="flex items-center justify-between">
           <span className="text-sm text-muted-foreground">

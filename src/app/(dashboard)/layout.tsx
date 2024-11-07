@@ -12,9 +12,9 @@ export default async function DashboardLayout({
   if (!session) redirect("/login");
 
   return (
-    <div className="flex min-h-[100dvh] w-full flex-col">
+    <div className="flex min-h-[100dvh] w-full max-w-7xl mx-auto flex-col ">
       <Navbar heading="Admin Panel" />
-      <main className="container mx-auto flex-1 p-4 md:gap-8 md:p-0">
+      <main className="w-full flex-1 p-4 md:gap-8 md:p-0 ">
         {children}
       </main>
     </div>

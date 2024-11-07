@@ -19,7 +19,7 @@ export default async function Home() {
   });
 
   return (
-    <div className="mb-4 px-4 sm:px-6 lg:px-8">
+    <div className="my-4 px-4 sm:px-6 lg:px-8">
       {/* Featured Post (Latest) */}
       {blogs.length > 0 && blogs[0].bannerImage && (
         <section className="mb-16">
@@ -27,17 +27,18 @@ export default async function Home() {
             href={`/post/${blogs[0].slug}`}
             className="group relative block overflow-hidden rounded-2xl"
           >
-            <div className="relative aspect-[16/9]">
+            <div className="relative aspect-[16/9] h-[40rem] w-full">
               <Image
                 src={blogs[0].bannerImage}
                 alt={blogs[0].title}
                 fill
+                
                 className="object-cover transition-transform duration-500 group-hover:scale-105"
                 priority
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
             </div>
-            <div className="absolute bottom-0 w-full p-6 md:p-8">
+            <div className="absolute bottom-0 w-full p-6 md:p-8 text-white">
               <span className="mb-2 block text-sm">
                 {FormateDate(blogs[0].createdAt.toString())}
               </span>
@@ -96,7 +97,7 @@ export default async function Home() {
                   </div>
                 </div>
 
-                <div className="relative aspect-[16/9] max-w-[400px] max-md:max-w-full">
+                <div className="relative aspect-[16/9] w-full max-w-[350px] max-md:max-w-full">
                   {post.bannerImage ? (
                     <Image
                       src={post.bannerImage}

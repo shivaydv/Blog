@@ -9,7 +9,7 @@ import Search from "./Search";
 
 const Navbar = ({ heading, url }: { heading: string; url?: string }) => {
   return (
-    <header className="sticky top-0 z-50">
+    <header className="sticky top-0 z-50 ">
       <nav
         className={
           "mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 bg-background px-4 max-md:shadow-sm md:h-20 md:px-0"
