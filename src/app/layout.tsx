@@ -37,7 +37,7 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={cn(
-          "flex min-h-[100dvh] flex-col font-instrument antialiased",
+          "flex min-h-[100dvh] flex-col overflow-x-hidden font-instrument antialiased",
           Fragment.variable,
           Instrument.variable,
         )}

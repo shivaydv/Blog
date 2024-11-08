@@ -11,7 +11,7 @@ const Footer = () => {
       <Separator />
       <footer
         className={
-          "flex flex-row items-center justify-between gap-2 py-6 md:space-y-0"
+          "flex flex-row items-center justify-between gap-2 px-4 py-6 md:space-y-0"
         }
       >
         <span>

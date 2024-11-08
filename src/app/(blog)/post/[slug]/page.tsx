@@ -32,8 +32,8 @@ const page = async ({ params }: { params: { slug: string } }) => {
 
   const content = { __html: post?.content || "" };
   return (
-    <div className="relative max-w-5xl mx-auto py-6">
-      <div className="mb-6">
+    <div className="container py-6 overflow-hidden">
+      <div className="mb-6 ">
         <div className="flex items-center justify-between">
           <span className="text-sm text-muted-foreground">
             {FormateDate(post.createdAt.toString())}
@@ -45,28 +45,27 @@ const page = async ({ params }: { params: { slug: string } }) => {
             isLoggedIn={!!session?.user}
           />
         </div>
-        <h1 className="w-full text-2xl font-extrabold md:text-3xl mt-4">
+        <h1 className="w-full  text-2xl font-extrabold md:text-3xl mt-4">
           {post.title}
         </h1>
-        {post.bannerImage && (
-          <div className="mt-6 aspect-video w-full relative overflow-hidden rounded-lg">
+          {post.bannerImage && (
+        <div className="relative aspect-[16/9] h-fit w-full rounded-lg my-4">
             <Image
-              src={post.bannerImage}
-              alt={post.title}
-              fill
-              className="object-cover"
-              priority
-              sizes="(max-width: 1200px) 100vw, 1200px"
+            src={post.bannerImage}
+            alt={post.title}
+            fill
+            className="object-cover rounded-lg "
+            priority
             />
           </div>
         )}
       </div>
 
-      <article className="prose prose-lg dark:prose-invert prose-headings:text-2xl prose-img:mx-auto prose-img:rounded-lg">
+      <article className="prose prose-lg dark:prose-invert prose-headings:text-2xl prose-img:mx-auto prose-img:rounded-lg md:prose-pre:max-w-none prose-pre:max-w-[90vw] ">
         <div dangerouslySetInnerHTML={content} />
       </article>
 
-      <div className="mt-8 border-t pt-8">
+      <div className=" border-t pt-8">
         <Comments 
           comments={post.comments} 
           postId={post.id}
